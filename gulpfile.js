@@ -5,7 +5,10 @@ var gulp = require('gulp'),
 gulp.task('default', function() {
 	browserSync({
 		server: {
-			baseDir: 'app'
+			baseDir: 'app',
+			routes: {
+				"/bower_components": "bower_components"
+			}
 		}
 	});
 
