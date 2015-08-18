@@ -1,0 +1,23 @@
+{
+  "name": "05 - Neighborhood Map",
+  "version": "0.0.0",
+  "homepage": "https://github.com/bencodezen/neighborhood-map",
+  "authors": [
+    "Ben Hong <bencodezen@gmail.com>"
+  ],
+  "description": "Udacity Front End Nanodegree - Project #5",
+  "moduleType": [
+    "node"
+  ],
+  "keywords": [
+    "javascript"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
