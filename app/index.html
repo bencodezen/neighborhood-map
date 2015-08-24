@@ -16,6 +16,8 @@
 	<div class="flex-container">
 		<div id="places">
 			<input id="pac-input" class="controls" type="text" placeholder="Search Box">
+			<ul>
+			</ul>
 		</div>
 	  <div id="map"></div>
 	</div>
@@ -29,7 +31,6 @@
 		// pick list containing a mix of places and predicted search terms.
 
 		// Get list of places from Places API
-		var list = [];
 
 		function initAutocomplete() {
 		  var map = new google.maps.Map(document.getElementById('map'), {
@@ -60,6 +61,7 @@
 		    // Clear out the old markers.
 		    markers.forEach(function(marker) {
 		      marker.setMap(null);
+		      $("#places ul").empty();
 		    });
 		    markers = [];
 
@@ -82,7 +84,8 @@
 		        position: place.geometry.location
 		      }));
 
-		      list = markers;
+		      // Append new item to left sidebar list
+		      $("#places ul").append("<li>" + place.name + "</li>");
 
 		      if (place.geometry.viewport) {
 		        // Only geocodes have viewport.
