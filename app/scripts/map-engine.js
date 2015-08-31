@@ -81,6 +81,13 @@ function getYelpData(searchTerm) {
 
   parameterMap.oauth_signature = OAuth.percentEncode(parameterMap.oauth_signature)
 
+  // Clear list of businesses if it contains content
+  var $ul = $('ul');
+
+  if ($ul.children().length > 0) {
+    $ul.empty();
+  }
+
   // Execute Ajax call for Yelp data
   var business,
       businessName,
@@ -94,15 +101,14 @@ function getYelpData(searchTerm) {
     'jsonpCallback' : 'cb',
     'success' : function(data) {
       results = data.businesses;
-      /* 
-       * Temporary data population of appending the
-       * business name to left hand list
-       */
+
       for (result in results) {
         business = results[result];
         name = business.name;
+        latitude = business.location.coordinate.latitude;
+        longitude = business.location.coordinate.longitude;
         $('#places ul').append('<li>' + name + '</li');
-        $('#places ul').append('<li>' + business.location.coordinate.latitude + ', ' + business.location.coordinate.longitude + '</li><br />');
+        addGoogleMarkers(name, latitude, longitude);
       }
     },
     'error' : function(error) {
@@ -116,11 +122,11 @@ function getYelpData(searchTerm) {
  * Documentation can be found here at 
  * http://bit.ly/1EuBEGb
  */
-function addGoogleMarkers() {
+function addGoogleMarkers(name, lat, lon) {
   var marker = new google.maps.Marker({
-    position: {lat: 37.76429, lng: -122.4307},
+    position: {lat: lat, lng: lon},
     map: map,
-    title: 'My first marker!'
+    title: name
   });
 };
 
@@ -129,7 +135,3 @@ initializeMap();
 
 // Initiate Yelp data request
 getYelpData('food');
-
-// Add Google Markers based on Yelp request
-addGoogleMarkers();
-
