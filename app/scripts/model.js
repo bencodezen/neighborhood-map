@@ -1,4 +1,9 @@
+/*
+ * Overall View Model for this app
+ */
 function yelpDataModel() {
+	// Assign 'this' to 'self' to avoid confusion in JS reference
+	var self = this;
 
 }
 
