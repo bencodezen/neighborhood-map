@@ -82,6 +82,10 @@ function getYelpData() {
   parameterMap.oauth_signature = OAuth.percentEncode(parameterMap.oauth_signature)
 
   // Execute Ajax call for Yelp data
+  var business,
+      businessName,
+      searchData;
+
   $.ajax({
     'url' : message.action,
     'data' : parameterMap,
@@ -89,7 +93,16 @@ function getYelpData() {
     'dataType' : 'jsonp',
     'jsonpCallback' : 'cb',
     'success' : function(data) {
-      console.log(data);
+      results = data.businesses;
+      /* 
+       * Temporary data population of appending the
+       * business name to left hand list
+       */
+      for (result in results) {
+        business = results[result];
+        name = business.name;
+        $('#places ul').append('<li>' + name + '</li');
+      }
     },
     'error' : function(error) {
       console.log(error);
