@@ -102,6 +102,7 @@ function getYelpData() {
         business = results[result];
         name = business.name;
         $('#places ul').append('<li>' + name + '</li');
+        $('#places ul').append('<li>' + business.location.coordinate.latitude + ', ' + business.location.coordinate.longitude + '</li><br />');
       }
     },
     'error' : function(error) {
@@ -110,9 +111,25 @@ function getYelpData() {
   });
 };
 
+/*
+ * Function to create Google Map markers
+ * Documentation can be found here at 
+ * http://bit.ly/1EuBEGb
+ */
+function addGoogleMarkers() {
+  var marker = new google.maps.Marker({
+    position: {lat: 37.76429, lng: -122.4307},
+    map: map,
+    title: 'My first marker!'
+  });
+};
+
 // Create map on page 
 initializeMap();
 
 // Initiate Yelp data request
 getYelpData();
+
+// Add Google Markers based on Yelp request
+addGoogleMarkers();
 
