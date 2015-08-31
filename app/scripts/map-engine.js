@@ -2,7 +2,6 @@ var map;
 
 // Function to create Google Map
 function initializeMap() {
-
   /*
    * Set starting location:
    * Chinatown, San Francisco
@@ -30,21 +29,77 @@ function initializeMap() {
 
 // Function to call Yelp API for data
 function getYelpData() {
-
   /* 
    * Keys are being left in for prototyping purposes, but production
    * level code would abstract this code out
    */
-  var authParams = {
+  var auth = {
     consumerKey : 'VQMqc69WoO0Lm05nPszZBQ',
     consumerSecret : 'CG0B-0CycMpoGSXQh2wQgaTq5wA',
-    signaturedMethod : 'hmac-sha1',
-    token : 'jsHKoLeXXYXSic1KCUIu7g-vG2rm2AKv',
-    tokenSecret : 'CTp7AmbVye8sch3DrpG3mwLYMlg'
+    accessToken : 'jsHKoLeXXYXSic1KCUIu7g-vG2rm2AKv',
+    accessTokenSecret : 'CTp7AmbVye8sch3DrpG3mwLYMlg',
+    serviceProvider : {
+      signatureMethod : 'HMAC-SHA1'
+    }
   };
-  
+
+  // Create accessor for OAuth
+  var accessor = {
+    consumerSecret : auth.consumerSecret,
+    tokenSecret : auth.accessTokenSecret
+  };
+
+  // Temporary static terms during build out phase
+  var searchTerm = 'food';
+  var location = 'San+Francisco';
+
+  // Define parameters for Ajax request
+  var parameters = [];
+  parameters.push(['term', searchTerm]);
+  parameters.push(['location', location]);
+  parameters.push(['callback', 'cb']);
+  parameters.push(['oauth_consumer_key', auth.consumerKey]);
+  parameters.push(['oauth_consumer_secret', auth.consumerSecret]);
+  parameters.push(['oauth_token', auth.accessToken]);
+  parameters.push(['oauth_signature_method', 'HMAC-SHA1']);
+
+  // Define Ajax message here
+  var message = {
+    'action' : 'http://api.yelp.com/v2/search',
+    'method' : 'GET',
+    'parameters' : parameters
+  };
+
+  /*
+   * Use OAuth methods to gain authorization privileges
+   * for Yelp API
+   */
+  OAuth.setTimestampAndNonce(message);
+  OAuth.SignatureMethod.sign(message, accessor);
+
+  var parameterMap = OAuth.getParameterMap(message.parameters);
+
+  parameterMap.oauth_signature = OAuth.percentEncode(parameterMap.oauth_signature)
+
+  // Execute Ajax call for Yelp data
+  $.ajax({
+    'url' : message.action,
+    'data' : parameterMap,
+    'cache' : true,
+    'dataType' : 'jsonp',
+    'jsonpCallback' : 'cb',
+    'success' : function(data) {
+      console.log(data);
+    },
+    'error' : function(error) {
+      console.log(error);
+    }
+  });
 };
 
 // Create map on page 
 initializeMap();
+
+// Initiate Yelp data request
+getYelpData();
 
