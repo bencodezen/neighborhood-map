@@ -5,6 +5,13 @@ function yelpDataModel() {
 	// Assign 'this' to 'self' to avoid confusion in JS reference
 	var self = this;
 
+	// Array to contain all yelpBusinesses
+	self.businesses = [];
+
+	// Operations
+	self.addBusiness = function(name, lat, lng) {
+		self.businesses.push(new yelpBusiness(name, lat, lng));
+	}
 }
 
 /* 
