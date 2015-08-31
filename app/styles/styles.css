@@ -7,5 +7,5 @@ body {
       
 .flex-container { height: 100vh; display: flex;}
 #map { height: 100%; flex-basis: 70%;}
-#places { flex-basis: 30%; height: 100%; background: red;}
+#places { flex-basis: 30%; height: 100%; background: #ccc;}
 #pac-input { position: relative; }
