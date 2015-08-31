@@ -28,15 +28,23 @@ function initializeMap() {
   map = new google.maps.Map(document.getElementById('map'), mapOptions);
 };
 
+// Function to call Yelp API for data
+function getYelpData() {
+
+  /* 
+   * Keys are being left in for prototyping purposes, but production
+   * level code would abstract this code out
+   */
+  var authParams = {
+    consumerKey : 'VQMqc69WoO0Lm05nPszZBQ',
+    consumerSecret : 'CG0B-0CycMpoGSXQh2wQgaTq5wA',
+    signaturedMethod : 'hmac-sha1',
+    token : 'jsHKoLeXXYXSic1KCUIu7g-vG2rm2AKv',
+    tokenSecret : 'CTp7AmbVye8sch3DrpG3mwLYMlg'
+  };
+  
+};
+
 // Create map on page 
 initializeMap();
 
-/* 
- * Yelp Keys - Disabled Until Needed 
- *
-var consumerKey = 'VQMqc69WoO0Lm05nPszZBQ',
-    consumerSecret = 'CG0B-0CycMpoGSXQh2wQgaTq5wA',
-    token = 'jsHKoLeXXYXSic1KCUIu7g-vG2rm2AKv',
-    tokenSecret = 'CTp7AmbVye8sch3DrpG3mwLYMlg';
- *
- */
