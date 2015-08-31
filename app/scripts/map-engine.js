@@ -28,7 +28,7 @@ function initializeMap() {
 };
 
 // Function to call Yelp API for data
-function getYelpData() {
+function getYelpData(searchTerm) {
   /* 
    * Keys are being left in for prototyping purposes, but production
    * level code would abstract this code out
@@ -50,7 +50,7 @@ function getYelpData() {
   };
 
   // Temporary static terms during build out phase
-  var searchTerm = 'food';
+  var searchTerm = searchTerm;
   var location = 'San+Francisco';
 
   // Define parameters for Ajax request
@@ -128,7 +128,7 @@ function addGoogleMarkers() {
 initializeMap();
 
 // Initiate Yelp data request
-getYelpData();
+getYelpData('food');
 
 // Add Google Markers based on Yelp request
 addGoogleMarkers();
