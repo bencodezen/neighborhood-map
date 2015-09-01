@@ -138,7 +138,8 @@ function addGoogleMarkers(markerList) {
     var marker = new google.maps.Marker({
       position : position,
       map : map,
-      title: markerList[i].name
+      title: markerList[i].name,
+      id : 'result-' + i
     });
 
     allMarkers.push(marker);
@@ -168,6 +169,8 @@ function addGoogleMarkers(markerList) {
 
     marker.addListener('click', function() {
       infoWindow.open(map, marker);
+      $('ul li').css('background-color', 'transparent');
+      $('#' + marker.id).css('background-color', 'red');
     });
   }
 
@@ -197,7 +200,7 @@ function generateContent(data) {
 
     markers.push(marker);
 
-    $('ul').append('<li>' + marker.name + '</li>');
+    $('ul').append('<li id="result-' + businessID + '">' + marker.name + '</li>');
   }
 
   addGoogleMarkers(markers);
