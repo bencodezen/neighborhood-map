@@ -139,7 +139,7 @@ function addGoogleMarkers(markerList) {
       position : position,
       map : map,
       title: markerList[i].name
-    }); 
+    });
 
     allMarkers.push(marker);
   }
@@ -151,6 +151,25 @@ function addGoogleMarkers(markerList) {
 
     allMarkers = [];    
   }
+
+  /* 
+  -------------------------------------
+  Function to enable business listing
+  to appear over the respective marker
+  -------------------------------------
+  */
+  function addInfoWindow(marker) {
+    console.log(marker);
+    var infoWindow = new google.maps.InfoWindow({
+      content : '<div>' + marker.title + '</div>'
+    });
+
+    marker.addListener('click', function() {
+      infoWindow.open(map, marker);
+    });
+  }
+
+  allMarkers.forEach(addInfoWindow);
 };
 
 // Function to generate content on the page
