@@ -100,16 +100,7 @@ function getYelpData(searchTerm) {
     'dataType' : 'jsonp',
     'jsonpCallback' : 'cb',
     'success' : function(data) {
-      results = data.businesses;
-
-      for (result in results) {
-        business = results[result];
-        name = business.name;
-        latitude = business.location.coordinate.latitude;
-        longitude = business.location.coordinate.longitude;
-        $('#places ul').append('<li>' + name + '</li');
-        addGoogleMarkers(name, latitude, longitude);
-      }
+      generateContent(data);
     },
     'error' : function(error) {
       console.log(error);
@@ -122,13 +113,40 @@ function getYelpData(searchTerm) {
  * Documentation can be found here at 
  * http://bit.ly/1EuBEGb
  */
-function addGoogleMarkers(name, lat, lon) {
+function addGoogleMarkers(markerList) {
   var marker = new google.maps.Marker({
     position: {lat: lat, lng: lon},
     map: map,
     title: name
   });
 };
+
+// Function to generate content on the page
+function generateContent(data) {
+  // Set content variables
+  var business;
+  var businesses = data.businesses;
+  var markers = [];
+
+  /*
+   * Loop through data to extrapolate content
+   */
+  for (businessID in businesses) {
+    business = businesses[businessID];
+    
+    var marker = {};
+
+    marker.name = business.name;
+    marker.street = business.location.display_address[0];
+    marker.cityStateZip = business.location.display_address[2]; 
+    marker.latitude = business.location.coordinate.latitude;
+    marker.longitude = business.location.coordinate.longitude;
+
+    markers.push(marker);
+
+    $('ul').append('<li>' + marker.name + '</li>');
+  }
+}
 
 // Create map on page 
 initializeMap();
