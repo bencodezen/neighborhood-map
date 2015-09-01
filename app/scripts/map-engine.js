@@ -156,6 +156,9 @@ function addGoogleMarkers(markerList) {
   -------------------------------------
   Function to enable business listing
   to appear over the respective marker
+  
+  Documentation can be found at
+  http://bit.ly/1FeblPp
   -------------------------------------
   */
   function addInfoWindow(marker) {
