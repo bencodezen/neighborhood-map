@@ -15,7 +15,7 @@ function initializeMap() {
    * http://bit.ly/1ItNfAl
    */
   var mapOptions = {
-    zoom: 16,
+    zoom: 13,
     zoomControl: true,
     center: startLocation,
     disableDefaultUI: true
