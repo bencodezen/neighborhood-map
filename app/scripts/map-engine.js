@@ -114,11 +114,16 @@ function getYelpData(searchTerm) {
  * http://bit.ly/1EuBEGb
  */
 function addGoogleMarkers(markerList) {
-  var marker = new google.maps.Marker({
-    position: {lat: lat, lng: lon},
-    map: map,
-    title: name
-  });
+  for (var i = 0; i < markerList.length; i++) {
+    var latitude = markerList[i].latitude;
+    var longitude = markerList[i].longitude;
+    var position = new google.maps.LatLng(latitude, longitude);
+
+    var marker = new google.maps.Marker({
+      position : position,
+      map : map
+    }); 
+  }
 };
 
 // Function to generate content on the page
@@ -145,6 +150,8 @@ function generateContent(data) {
     markers.push(marker);
 
     $('ul').append('<li>' + marker.name + '</li>');
+
+    addGoogleMarkers(markers);
   }
 }
 
