@@ -169,8 +169,6 @@ function addGoogleMarkers(markerList) {
 
     marker.addListener('click', function() {
       infoWindow.open(map, marker);
-      $('ul li').css('background-color', 'transparent');
-      $('#' + marker.id).css('background-color', 'red');
     });
   }
 
