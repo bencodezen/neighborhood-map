@@ -134,12 +134,16 @@ function addGoogleMarkers(markerList) {
     var latitude = markerList[i].latitude;
     var longitude = markerList[i].longitude;
     var position = new google.maps.LatLng(latitude, longitude);
+    var street = markerList[i].street;
+    var cityStateZip = markerList[i].cityStateZip; 
 
     var marker = new google.maps.Marker({
       position : position,
       map : map,
       title: markerList[i].name,
-      id : 'result-' + i
+      id : 'result-' + i,
+      street : street,
+      cityStateZip : cityStateZip
     });
 
     allMarkers.push(marker);
@@ -163,8 +167,14 @@ function addGoogleMarkers(markerList) {
   -------------------------------------
   */
   function addInfoWindow(marker) {
+    var content = "<div>";
+    content += "<strong>" + marker.title + "</strong>";
+    content += "<br />" + marker.street;
+    content += "<br />" + marker.cityStateZip;
+    content += "</div>";
+
     var infoWindow = new google.maps.InfoWindow({
-      content : '<div>' + marker.title + '</div>'
+      content : content
     });
 
     marker.addListener('click', function() {
