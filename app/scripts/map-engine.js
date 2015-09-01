@@ -156,13 +156,12 @@ function addGoogleMarkers(markerList) {
   -------------------------------------
   Function to enable business listing
   to appear over the respective marker
-  
+
   Documentation can be found at
   http://bit.ly/1FeblPp
   -------------------------------------
   */
   function addInfoWindow(marker) {
-    console.log(marker);
     var infoWindow = new google.maps.InfoWindow({
       content : '<div>' + marker.title + '</div>'
     });
