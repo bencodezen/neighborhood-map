@@ -1,4 +1,5 @@
 var map;
+var allMarkers = [];
 
 // Function to create Google Map
 function initializeMap() {
@@ -114,6 +115,21 @@ function getYelpData(searchTerm) {
  * http://bit.ly/1EuBEGb
  */
 function addGoogleMarkers(markerList) {
+  /*
+  -------------------------------------
+  Clear existing markers if necessary
+  -------------------------------------
+  */
+  if (allMarkers.length > 0) {
+    deleteMarkers();
+  }
+
+  /* 
+  -------------------------------------
+  Enumerate over markerList and create 
+  a marker for each location
+  -------------------------------------
+  */
   for (var i = 0; i < markerList.length; i++) {
     var latitude = markerList[i].latitude;
     var longitude = markerList[i].longitude;
@@ -121,8 +137,19 @@ function addGoogleMarkers(markerList) {
 
     var marker = new google.maps.Marker({
       position : position,
-      map : map
+      map : map,
+      title: markerList[i].name
     }); 
+
+    allMarkers.push(marker);
+  }
+
+  function deleteMarkers() {
+    for (marker in allMarkers) {
+      allMarkers[marker].setMap(null);
+    }
+
+    allMarkers = [];    
   }
 };
 
@@ -150,9 +177,9 @@ function generateContent(data) {
     markers.push(marker);
 
     $('ul').append('<li>' + marker.name + '</li>');
-
-    addGoogleMarkers(markers);
   }
+
+  addGoogleMarkers(markers);
 }
 
 // Create map on page 
