@@ -1,11 +1,88 @@
+/*
+-------------------------------------
+Global
+-------------------------------------
+*/
+
 html, 
 body { 
 	height: 100%;
 	margin: 0;
 	padding: 0; 
+	font-family: sans-serif;
 }
-      
-.flex-container { height: 100vh; display: flex;}
-#map { height: 100%; flex-basis: 70%;}
-#places { flex-basis: 30%; height: 100%; background: #ccc;}
-#pac-input { position: relative; }
+
+ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+/*
+-------------------------------------
+Map
+-------------------------------------
+*/
+
+#map {
+	height: 100%;
+	width: 100%;
+}
+
+/*
+-------------------------------------
+Search Results
+-------------------------------------
+*/
+
+#places {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	z-index: 999;
+	background-color: rgba(255, 255, 255, 0.8);
+	padding: 20px;
+	height: 400px;
+}
+
+ul {
+	overflow: scroll;
+	height: 385px;
+}
+
+ul li {
+	padding: 10px 0;
+	border-bottom: 1px solid #999;
+}
+
+ul li:first-child {
+	padding-top: 20px;
+}
+
+ul li:last-child {
+	border-bottom: 0;
+}
+
+/*
+-------------------------------------
+Form Input
+-------------------------------------
+*/
+#places form {
+	display: flex;
+	align-items: stretch;
+}
+
+#search {
+	flex: 3;
+	padding: 5px;
+	font-size: 1em;
+}
+
+input[type="submit"] {
+	flex: 1;
+	background-color: #21CE2F;
+	color: white;
+	text-transform: uppercase;
+	border: 0;
+}
