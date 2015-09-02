@@ -6,20 +6,29 @@
 	<link rel="stylesheet" type="text/css" href="styles/styles.css">
 </head>
 <body>
+	<!-- Content: Search Function and Results -->
 	<div id="places">
+		<!-- Search Form -->
 		<form>
 			<input id="search" class="controls" type="text" placeholder="Search Box" data-bind="value: searchTerm">
 			<input type="submit" data-bind="click: updateSearchResults"></input>
 		</form>
+		<!-- Search Results -->
 		<ul>
 		</ul>
 	</div>
+	<!-- Content: Google Map -->
   <div id="map"></div>
+
+  <!-- Bower Components -->
 	<script type="text/javascript" src="../bower_components/jquery/dist/jquery.min.js"></script>
 	<script type="text/javascript" src="../bower_components/knockout/dist/knockout.js"></script>
+	<!-- Google Places -->
   <script src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>
+  <!-- OAuth Libraries -->
   <script src="http://oauth.googlecode.com/svn/code/javascript/oauth.js"></script>
   <script src="http://oauth.googlecode.com/svn/code/javascript/sha1.js"></script>
+  <!-- Application Libraries -->
   <script src="scripts/map-engine.js"></script>
   <script src="scripts/model.js"></script>
 </body>
