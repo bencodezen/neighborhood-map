@@ -6,7 +6,7 @@ function yelpDataViewModel() {
 	var self = this;
 
 	// Have Knockout.js observe for changes in the search term
-	self.searchTerm = ko.observable("food");
+	self.searchTerm = ko.observable("sushi");
 
 	// Trigger a new Yelp query 
 	self.updateSearchResults = function() {
