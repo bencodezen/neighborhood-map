@@ -1,6 +1,9 @@
 var map;
 var allMarkers = [];
 
+// Creates only one instance of infoWindow
+var infoWindow = new google.maps.InfoWindow();
+
 /*
 -------------------------------------
 Method to create Google Map
@@ -207,17 +210,14 @@ function addGoogleMarkers(markerList) {
   -------------------------------------
   */
   function addInfoWindow(marker) {
-    var content = "<div>";
+    var content = "<div class=\"location-info\">";
     content += "<strong>" + marker.title + "</strong>";
     content += "<br />" + marker.street;
     content += "<br />" + marker.cityStateZip;
     content += "</div>";
 
-    var infoWindow = new google.maps.InfoWindow({
-      content : content
-    });
-
     marker.addListener('click', function() {
+      infoWindow.setContent(content); 
       infoWindow.open(map, marker);
     });
   }
