@@ -263,6 +263,7 @@ function generateContent(data) {
     business = businesses[businessID];
     
     var marker = {};
+    var content;
 
     marker.id = business.id;
     marker.name = business.name;
@@ -273,12 +274,31 @@ function generateContent(data) {
     marker.rating = business.rating;
     marker.isClosed = business.is_closed ? 'Closed' : 'Open';
 
+    content = '<li id="' + marker.id + '">';
+    content += marker.name + '<br />';
+    content += '<span class="' +  marker.isClosed + '">';
+    content += marker.isClosed;
+    content += '</span></li>';
+
     markers.push(marker);
 
-    $('ul').append('<li id="' + marker.id + '">' + marker.name + '<br /> ' + marker.isClosed + '</li>');
+    $('ul').append(content);
   }
 
   addGoogleMarkers(markers);
+}
+
+/*
+-------------------------------------
+Location filter functions
+-------------------------------------
+*/
+function showAllLocations() {
+  $('.Closed').parent().show();
+}
+
+function hideClosedLocations() {
+  $('.Closed').parent().hide();
 }
 
 /*
