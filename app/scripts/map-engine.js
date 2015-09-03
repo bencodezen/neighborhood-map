@@ -223,11 +223,18 @@ function addGoogleMarkers(markerList) {
     searchResults = $('#places ul li');
 
     marker.addListener('click', function() {
-      searchResults.css('background', 'none');
       infoWindow.setContent(content); 
       infoWindow.open(map, marker);
+      searchResults.css('background', 'none');
       markerId.css('background', 'rgb(227, 229, 87)');
       $('#places ul').scrollTop(scrollAmount.top - 100);
+    });
+
+    markerId.on('click', function() {
+      infoWindow.setContent(content);
+      infoWindow.open(map, marker);
+      searchResults.css('background', 'none');
+      markerId.css('background', 'rgb(227, 229, 87)');
     });
   }
 
