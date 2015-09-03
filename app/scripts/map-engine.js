@@ -236,6 +236,8 @@ function generateContent(data) {
   var businesses = data.businesses;
   var markers = [];
 
+  console.log(businesses);
+
   /*
   -------------------------------------
   Loop through data to extrapolate content
@@ -246,15 +248,18 @@ function generateContent(data) {
     
     var marker = {};
 
+    marker.id = business.id;
     marker.name = business.name;
     marker.street = business.location.display_address[0];
     marker.cityStateZip = business.location.display_address[2]; 
     marker.latitude = business.location.coordinate.latitude;
     marker.longitude = business.location.coordinate.longitude;
+    marker.rating = business.rating;
+    marker.isClosed = business.is_closed;
 
     markers.push(marker);
 
-    $('ul').append('<li id="result-' + businessID + '">' + marker.name + '</li>');
+    $('ul').append('<li id="result-' + marker.id + '">' + marker.name + '<br />Currently: ' + marker.isClosed + '</li>');
   }
 
   addGoogleMarkers(markers);
