@@ -187,7 +187,8 @@ function addGoogleMarkers(markerList) {
       title: markerList[i].name,
       id : markerList[i].id,
       street : street,
-      cityStateZip : cityStateZip
+      cityStateZip : cityStateZip,
+      isClosed : markerList[i].isClosed
     });
 
     allMarkers.push(marker);
@@ -284,6 +285,24 @@ function generateContent(data) {
 
     $('ul').append(content);
   }
+
+  // Hide all markers that are closed
+  $('#open-now').on('click', function() {
+    for (marker in allMarkers) {
+      if (allMarkers[marker].isClosed === "Closed") {
+        allMarkers[marker].setVisible(false);
+      }
+    }
+  });
+
+  // Show all markers
+  $('#all-locations').on('click', function() {
+    for (marker in allMarkers) {
+      if (allMarkers[marker].isClosed === "Closed") {
+        allMarkers[marker].setVisible(true);
+      }
+    }
+  });
 
   addGoogleMarkers(markers);
 }
