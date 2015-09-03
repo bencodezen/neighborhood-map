@@ -1,5 +1,6 @@
 var map;
 var allMarkers = [];
+var searchResults = $('#places ul li');
 
 // Creates only one instance of infoWindow
 var infoWindow = new google.maps.InfoWindow();
@@ -184,7 +185,7 @@ function addGoogleMarkers(markerList) {
       position : position,
       map : map,
       title: markerList[i].name,
-      id : 'result-' + i,
+      id : markerList[i].id,
       street : street,
       cityStateZip : cityStateZip
     });
@@ -216,9 +217,17 @@ function addGoogleMarkers(markerList) {
     content += "<br />" + marker.cityStateZip;
     content += "</div>";
 
+    var markerId = $('#' + marker.id);
+    var scrollAmount = $(markerId).offset();
+
+    searchResults = $('#places ul li');
+
     marker.addListener('click', function() {
+      searchResults.css('background', 'none');
       infoWindow.setContent(content); 
       infoWindow.open(map, marker);
+      markerId.css('background', 'rgb(227, 229, 87)');
+      $('#places ul').scrollTop(scrollAmount.top - 100);
     });
   }
 
@@ -235,8 +244,6 @@ function generateContent(data) {
   var business;
   var businesses = data.businesses;
   var markers = [];
-
-  console.log(businesses);
 
   /*
   -------------------------------------
@@ -259,7 +266,7 @@ function generateContent(data) {
 
     markers.push(marker);
 
-    $('ul').append('<li id="result-' + marker.id + '">' + marker.name + '<br />Currently: ' + marker.isClosed + '</li>');
+    $('ul').append('<li id="' + marker.id + '">' + marker.name + '<br />Currently: ' + marker.isClosed + '</li>');
   }
 
   addGoogleMarkers(markers);
