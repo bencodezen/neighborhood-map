@@ -271,11 +271,11 @@ function generateContent(data) {
     marker.latitude = business.location.coordinate.latitude;
     marker.longitude = business.location.coordinate.longitude;
     marker.rating = business.rating;
-    marker.isClosed = business.is_closed;
+    marker.isClosed = business.is_closed ? 'Closed' : 'Open';
 
     markers.push(marker);
 
-    $('ul').append('<li id="' + marker.id + '">' + marker.name + '<br />Currently: ' + marker.isClosed + '</li>');
+    $('ul').append('<li id="' + marker.id + '">' + marker.name + '<br /> ' + marker.isClosed + '</li>');
   }
 
   addGoogleMarkers(markers);
