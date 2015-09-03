@@ -219,22 +219,24 @@ function addGoogleMarkers(markerList) {
 
     var markerId = $('#' + marker.id);
     var scrollAmount = $(markerId).offset();
+    var $resultList = $('#places ul');
 
     searchResults = $('#places ul li');
 
-    marker.addListener('click', function() {
+    function highlightLocation() {
       infoWindow.setContent(content); 
       infoWindow.open(map, marker);
       searchResults.css('background', 'none');
       markerId.css('background', 'rgb(227, 229, 87)');
-      $('#places ul').scrollTop(scrollAmount.top - 100);
+    }
+
+    marker.addListener('click', function() {
+      highlightLocation();
+      $resultList.scrollTop(scrollAmount.top - 100);
     });
 
     markerId.on('click', function() {
-      infoWindow.setContent(content);
-      infoWindow.open(map, marker);
-      searchResults.css('background', 'none');
-      markerId.css('background', 'rgb(227, 229, 87)');
+      highlightLocation();
     });
   }
 
