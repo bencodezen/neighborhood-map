@@ -1,6 +1,6 @@
-var map;
+var map,
+    searchResults;
 var allMarkers = [];
-var searchResults = $('#places ul li');
 
 // Creates only one instance of infoWindow
 var infoWindow = new google.maps.InfoWindow();
@@ -194,6 +194,7 @@ function addGoogleMarkers(markerList) {
     allMarkers.push(marker);
   }
 
+  // Deletes all markers from memory
   function deleteMarkers() {
     for (marker in allMarkers) {
       allMarkers[marker].setMap(null);
@@ -224,6 +225,7 @@ function addGoogleMarkers(markerList) {
 
     searchResults = $('#places ul li');
 
+    // Change style on list for the location in question
     function highlightLocation() {
       infoWindow.setContent(content); 
       infoWindow.open(map, marker);
@@ -231,11 +233,13 @@ function addGoogleMarkers(markerList) {
       markerId.css('background', 'rgb(227, 229, 87)');
     }
 
+    // Connects the marker to the respective list item by click
     marker.addListener('click', function() {
       highlightLocation();
       $resultList.scrollTop(scrollAmount.top - 100);
     });
 
+    // Connects the list item to the respective marker by click
     markerId.on('click', function() {
       highlightLocation();
     });
@@ -266,6 +270,7 @@ function generateContent(data) {
     var marker = {};
     var content;
 
+    // Set marker properties
     marker.id = business.id;
     marker.name = business.name;
     marker.street = business.location.display_address[0];
@@ -275,6 +280,7 @@ function generateContent(data) {
     marker.rating = business.rating;
     marker.isClosed = business.is_closed ? 'Closed' : 'Open';
 
+    // Set content to be appended in the search results list
     content = '<li id="' + marker.id + '">';
     content += marker.name + '<br />';
     content += '<span class="' +  marker.isClosed + '">';
