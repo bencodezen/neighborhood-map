@@ -68,6 +68,7 @@ ul li:last-child {
 Form Input
 -------------------------------------
 */
+
 #places form {
 	display: flex;
 	align-items: stretch;
@@ -85,4 +86,32 @@ input[type="submit"] {
 	color: white;
 	text-transform: uppercase;
 	border: 0;
+}
+
+/*
+-------------------------------------
+Mobile Layout
+-------------------------------------
+*/
+
+@media screen and (max-width: 700px) {
+	body {
+		display: flex;
+		flex-direction: column;
+	}
+
+	#map {
+		height: 100%;
+	}
+
+	#places {
+		position: relative;
+		height: 40vh;
+		top: 0;
+		right: 0;
+	}
+
+	#places ul {
+		height: 35vh;
+	}
 }
