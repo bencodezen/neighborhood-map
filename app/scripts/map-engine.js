@@ -184,6 +184,7 @@ function addGoogleMarkers(markerList) {
     var marker = new google.maps.Marker({
       position : position,
       map : map,
+      animation: google.maps.Animation.DROP,
       title: markerList[i].name,
       id : markerList[i].id,
       street : street,
@@ -233,15 +234,25 @@ function addGoogleMarkers(markerList) {
       markerId.css('background', 'rgb(227, 229, 87)');
     }
 
+    // Animate Google marker on location click
+    function animateMarker() {
+      marker.setAnimation(google.maps.Animation.BOUNCE);
+      setTimeout(function() {
+        marker.setAnimation(null);
+      }, 730);
+    }
+
     // Connects the marker to the respective list item by click
     marker.addListener('click', function() {
       highlightLocation();
       $resultList.scrollTop(scrollAmount.top - 100);
+      animateMarker();
     });
 
     // Connects the list item to the respective marker by click
     markerId.on('click', function() {
       highlightLocation();
+      animateMarker();
     });
   }
 
