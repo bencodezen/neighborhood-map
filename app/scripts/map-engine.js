@@ -293,19 +293,23 @@ function generateContent(data) {
   }
 
   // Hide all markers that are closed
-  $('#open-now').on('click', function() {
+  $('#open-locations').on('click', function() {
     for (marker in allMarkers) {
-      if (allMarkers[marker].isClosed === "Closed") {
+      if (allMarkers[marker].isClosed === "Open") {
+        allMarkers[marker].setVisible(true);
+      } else {
         allMarkers[marker].setVisible(false);
       }
     }
   });
 
   // Show all markers
-  $('#all-locations').on('click', function() {
+  $('#closed-locations').on('click', function() {
     for (marker in allMarkers) {
       if (allMarkers[marker].isClosed === "Closed") {
         allMarkers[marker].setVisible(true);
+      } else {
+        allMarkers[marker].setVisible(false);
       }
     }
   });
@@ -318,12 +322,14 @@ function generateContent(data) {
 Location filter functions
 -------------------------------------
 */
-function showAllLocations() {
-  $('.Closed').parent().show();
+function showOpenLocations() {
+  $('.Open').parent().show();
+  $('.Closed').parent().hide();
 }
 
-function hideClosedLocations() {
-  $('.Closed').parent().hide();
+function showClosedLocations() {
+  $('.Closed').parent().show();
+  $('.Open').parent().hide();
 }
 
 /*
