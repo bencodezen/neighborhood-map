@@ -1,36 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Project #5 - Neighborhood Map</title>
-	<link rel="stylesheet" href="dist/styles.css">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Project #5 - Neighborhood Map</title>
+  <link rel="stylesheet" href="dist/styles.css">
 </head>
 <body>
-	<!-- Content: Search Function and Results -->
-	<div id="places">
-		<!-- Search Form -->
-		<form>
-			<input id="search" class="controls" type="text" placeholder="Search Box" data-bind="value: searchTerm">
-			<input type="submit" data-bind="click: updateSearchResults">
-		</form>
-		<!-- Filter Options -->
-		<div id="filter">
-			<a id="open-locations" onclick="showOpenLocations();">Open</a>
-			<a id="closed-locations" onclick="showClosedLocations();">Closed</a>
-		</div>
-		<!-- Search Results -->
-		<ul>
-		</ul>
-	</div>
-	<!-- Content: Google Map -->
+  <!-- Content: Search Function and Results -->
+  <div id="places">
+    <!-- Search Form -->
+    <form>
+      <input id="search" class="controls" type="text" placeholder="Search Box" data-bind="value: searchTerm">
+      <input type="submit" data-bind="click: updateSearchResults">
+    </form>
+    <!-- Filter Options -->
+    <div id="filter">
+      <a id="open-locations" onclick="showOpenLocations();">Open</a>
+      <a id="closed-locations" onclick="showClosedLocations();">Closed</a>
+    </div>
+    <!-- Search Results -->
+    <ul>
+    </ul>
+  </div>
+  <!-- Content: Google Map -->
   <div id="map"></div>
 
   <!-- Bower Components -->
-	<script src="../bower_components/jquery/dist/jquery.min.js"></script>
-	<script src="../bower_components/knockout/dist/knockout.js"></script>
-	<!-- Google Places -->
+  <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="../bower_components/knockout/dist/knockout.js"></script>
+  <!-- Google Places -->
   <script src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>
   <!-- OAuth Libraries -->
   <script src="http://oauth.googlecode.com/svn/code/javascript/oauth.js"></script>
