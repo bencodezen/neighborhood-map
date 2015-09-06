@@ -125,12 +125,12 @@ Mobile Layout
 
 	#places {
 		position: relative;
-		height: 40vh;
+		height: 60%;
 		top: 0;
 		right: 0;
 	}
 
 	#places ul {
-		height: 28vh;
+		height: 50%;
 	}	
 }
